@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run a multi-line command
-        run: |
+        run: 
           ls -a
           echo
           java -version
