@@ -1,0 +1,21 @@
+name: Docker Dev Image CI
+
+env:
+  DATE_STAMP: $(date +%s)
+
+on:
+  pull_request:
+    # type: is an option too
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Env variables
+      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB
+  
