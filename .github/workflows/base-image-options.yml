@@ -42,5 +42,5 @@ jobs:
           echo
           df
           echo
-          echo env -0 | sort -z | tr'\0''\n'
+          echo env -0 | sort -z | tr'\0' '\n'
 
