@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run a multi-line command
         run: 
-          ls -a
+          ls 
           echo
           java -version
           echo
