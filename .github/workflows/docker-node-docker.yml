@@ -14,9 +14,10 @@ jobs:
   deploy_aws:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout source code
         uses: actions/checkout@v2
-      - name: Configure AWS credentials
 
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-cridentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
@@ -24,7 +25,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Version Label
-        run: |
+        run: 
           echo "aws_version_label=${{env.APP_NAME}}-${{env.PIPLINE_ID}}" >> $GITHUB_ENV
           echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
