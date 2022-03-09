@@ -22,7 +22,14 @@ jobs:
       run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:latest
+      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp-dev:latest
 
-    - name: Run Test
-      run: docker fun brycepayne/my-awesome-app-bmp:latest npm run test
+    - name: login to docker hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: push the docker image to docker hub
+      run: docker push --all-tags brycepayne/my-awesome-app-bmp
+
