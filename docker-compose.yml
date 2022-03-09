@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  prod-web:
+    container_name: my-awesome-app-bmp-aws
+    image: brycepayne/my-awesome-app-bmp:latest
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - '80:8080'
