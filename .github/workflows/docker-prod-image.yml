@@ -19,7 +19,7 @@ jobs:
         run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
       - name: Builds the docker image
-        run: docker build . --file Dockerfile -- tag brycepayne/my-awesome-app-bmp:latest  
+        run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:latest  
 
       - name: add "date-stamp" tag to the image
         run: docker image tag brycepayne/my-awesome-app-bmp:${{env.date-stamp}}
