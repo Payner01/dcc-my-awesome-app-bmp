@@ -13,17 +13,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
   
-  steps:
-    - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Env Variable
-      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
+      - name: Env Variable
+        run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
-    - name: build docker image
-      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:${{ env.date-stamp }}
+      - name: build docker image
+        run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:${{ env.date-stamp }}
 
-    - name: run docker compost files
-      run: docker run brycepayne/my-awesome-app-bmp:${{ env.date-stamp }} npm run test
+      - name: run docker compost files
+        run: docker run brycepayne/my-awesome-app-bmp:${{ env.date-stamp }} npm run test
       
       
 
