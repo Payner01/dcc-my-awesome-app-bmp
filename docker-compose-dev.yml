@@ -5,7 +5,7 @@ services:
     container_name: my-awesome-app-bmp-dev
     build:
       context: ./
-      dockerfile: ./Dockerfile-dev
+      dockerfile: Dockerfile.dev
     ports:
       - '3001:3000'
     volumes:
@@ -14,10 +14,11 @@ services:
 
   test:
     container_name: my-awesome-app-bpm-test
+    image: my-awesome-app-bmp_my-awesome-app-bmp-dev
     build:
       context: ./
-      dockerfile: ./Dockerfile-dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./:/app
       - ./node_modules:/app/node_modules
-    command: ["npm", "test"]
+    command: ["npm", "run", "test"]

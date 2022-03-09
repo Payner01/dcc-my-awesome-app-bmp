@@ -4,8 +4,6 @@ env:
   DATE_STAMP: $(date +%s)
 
 on:
-  push:
-    branches: [main]
   pull_request:
     # type: is an option too
     branches: [main]
@@ -18,10 +16,13 @@ jobs:
   steps:
     - uses: actions/checkout@v2
 
-    - name: Env variables
-      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
+    - name: build docker image
+      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:latest
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp-dev:latest
+    - name: run docker image
+      run: docker run my-awesome-app-bmp npm run test
+
+    - name: run docker compost files
+      run: docker-compose -f "Dockerfile.dev" up -d --build test
       
 
