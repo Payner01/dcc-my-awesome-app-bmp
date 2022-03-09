@@ -15,16 +15,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
   
-  steps:
-    - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Env variables
-      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
+      - name: Env variables
+        run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
-    # - name: add "date-stamp" tag to the image
-    #   run: docker image tag brycepayne/my-awesome-app-bmp:latest brycepayne/my-awesome-app-bmp:${{env.date-stamp}}  
+      - name: add "date-stamp" tag to the image
+        run: docker image tag brycepayne/my-awesome-app-bmp:latest brycepayne/my-awesome-app-bmp:${{env.date-stamp}}  
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:${{ env.date-stamp }}
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:latest
 
     
