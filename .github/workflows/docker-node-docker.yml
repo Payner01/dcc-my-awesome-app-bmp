@@ -14,10 +14,10 @@ jobs:
   deploy_aws:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Configure AWS credentials
 
-      - uses: aws-actions/configure-aws-cridentials@v1
+        uses: aws-actions/configure-aws-cridentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
