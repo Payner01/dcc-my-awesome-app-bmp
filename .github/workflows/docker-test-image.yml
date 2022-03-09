@@ -1,18 +1,28 @@
-name: Docker Test Image CI
+name: Docker test Image CI
+
+env:
+  DATE_STAMP: $(date +%s)
 
 on:
   push:
     branches: [main]
-  pull_requests:
+  pull_request:
+    # type: is an option too
     branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+  
+  steps:
+    - uses: actions/checkout@v2
 
-    steps:
-      - uses: actions/checkout@v2
+    - name: Env variables
+      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
 
-      - name: Run Docker compose on Dev files
-        run: docker-compose -f "docker-compose-dev.yml" up -d --build test
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag brycepayne/my-awesome-app-bmp:latest
+
+    - name: Run Test
+      run: docker fun brycepayne/my-awesome-app-bmp:latest npm run test
